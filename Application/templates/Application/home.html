@@ -1,22 +1,110 @@
+{% load static %}
 <!DOCTYPE html>
-<head>
-    {% load static %}
-    <title> 
-        Button
-    </title>
-</head>
-<body>
-    
+<html lang="en">
 
-    <h1>
-         Django server with a button 
-    </h1>
-    <button id="clickBtn">
-        Click Me!
-    </button>
-    <script 
-        src= "{% static 'app.js' %}" >
-    </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/DonutDive.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css"crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+    <title>Donut Dive</title>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Donut Dive</h1>
+        <p>Your go-to place for delicious donuts!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'Home' %}">Home</a></li>
+            <li><a href="{% url 'Contacts' %}">Contacts</a></li>
+            <li><a href="{% url 'Calendar' %}">Calendar</a></li>
+            <li><a href="{% url 'Login' %}">Login</a></li>
+            <li id="loginStatus"></li>
+        </ul>
+    </nav>
+
+
+<div class="container">
+        <section id="menu">
+            <h2>Menu</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Classic Glazed</h3>
+                    <p>Classic glaze on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Chocolate Glaze</h3>
+                    <p>Chocolate glaze on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Strawberry Glaze</h3>
+                    <p>Strawberry glaze on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Vanilla Glaze</h3>
+                    <p>Vanilla glaze on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Apple Cider Sugar</h3>
+                    <p>Apple Cider Sugar on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Powdered Sugar</h3>
+                    <p>Powdered Sugar on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Cinnamon Sugar</h3>
+                    <p>Cinnamon Sugar on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Pumpkin Pie Sugar</h3>
+                    <p>Pumpkin Pie Sugar on top of a healthy dozen donuts.</p>
+                </div>
+                <h2>Loaded Donuts</h2>
+                <div class="menu-item">
+                    <h3>Cinnamon bun</h3>
+                    <p>Creme Cheese Glaze and Cinnamon Sugar on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Smores</h3>
+                    <p>Chocolate Glaze, Graham Cracker Crums, and Marshmallows on top of a healthy dozen donuts.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Maple Bacon</h3>
+                    <p>Maple Glaze and Bacon Bits on top of a healthy dozen donuts.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="main-content">
+            <div class="menu-description">
+                <h2>What you can expect.</h2>
+                <p>Here are some of our best loaded donut flavors!</p>
+            </div>
+
+            <!-- Picture 1 with text -->
+            <div class="menu-item">
+                <img src="{% static 'images/MapleBacon.jpg' %}" alt="Maple Bacon and Cinnamon Bun donuts"width="300px" height="300">
+                <p>Maple Bacon and Cinnamon Bun donuts</p>
+            </div>
+
+            <!-- Picture 2 with text -->
+            <div class="menu-item">
+                <img src="{% static 'images/Smores.jpg' %}" alt="Maple Bacon and Smores donuts" width="300px" height="300">
+                <p>Maple Bacon and Smores donuts</p>
+            </div>
+        </section>
+
+
 
 </body>
+
 </html>

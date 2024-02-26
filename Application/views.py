@@ -1,11 +1,19 @@
 from django.shortcuts import render
 
 # Create your views here.
-def home(request):
+def Home(request):
     context={}
-    return render(request, "Application/home.html", context)
+    return render(request, "Application/Home.html", context)
 
-def index(request):
+def Calendar(request):
     context={}
-    return render(request, "Application/index.html", context)
+    return render(request, "Application/Calendar.html", context)
+
+def Contacts(request):
+    context={}
+    return render(request, "Application/Contacts.html", context)
+
+def Login(request):
+    context={}
+    return render(request, "Application/Login.html", context)
     
