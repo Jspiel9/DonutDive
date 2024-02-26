@@ -56,19 +56,19 @@ async function logout() {
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('http://localhost:8000/checkAuth', {
+        const response = await fetch('http://localhost:8000/checkAuth/', {  
             method: 'GET',
             credentials: 'include',
         });
 
         const data = await response.json();
 
-        if (response.ok) {
+        if (response.status === 200) {
             currentUser = { username: data.username };
             isLoggedIn = true;
             updateLoginStatus();
             showLoggedInContent();
-        } else {
+        } else if (response.status === 401) {
             currentUser = null;
             isLoggedIn = false;
             hasClaimedReward = false;
@@ -131,6 +131,3 @@ async function claimReward() {
         alert('You have already claimed the reward for this week');
     }
 }
-
-// Add this line to check authentication on page load
-checkAuthentication();

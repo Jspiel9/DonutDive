@@ -1,3 +1,4 @@
+//server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -41,11 +42,13 @@ app.post('/login', (req, res) => {
 
   if (user) {
     req.session.userId = user.id;
+    req.session.username = user.username; // Set the username in the session
     res.json({ message: 'Login successful' });
   } else {
     res.status(401).json({ message: 'Invalid username or password' });
   }
 });
+
 
 // Logout endpoint
 app.post('/logout', isAuthenticated, (req, res) => {

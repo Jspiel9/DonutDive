@@ -1,3 +1,4 @@
+#settings.py
 """
 Django settings for djangoApplication project.
 
@@ -138,6 +139,5 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 #append slash
 APPEND_SLASH = False
-
 
 

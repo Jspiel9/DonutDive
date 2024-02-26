@@ -22,14 +22,20 @@ async function login() {
             currentUser = { username: usernameInput };
             isLoggedIn = true;
             updateLoginStatus();
-            showLoggedInContent();
+            showLoggedInContent(); // Show the logged-in content
         } else {
-            alert(data.message || 'Login failed');
+            alert(data.error || 'Login failed');
         }
     } catch (error) {
         console.error('Login error:', error);
     }
 }
+
+// Prevent form submission
+$('#loginForm').submit(function(event) {
+    event.preventDefault();
+});
+
 
 async function logout() {
     try {
@@ -56,14 +62,14 @@ async function logout() {
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('http://localhost:8000/checkAuth', {
+        const response = await fetch('http://localhost:8000/checkAuth/', {
             method: 'GET',
             credentials: 'include',
         });
 
         const data = await response.json();
 
-        if (response.ok) {
+        if (response.status === 200) {
             currentUser = { username: data.username };
             isLoggedIn = true;
             updateLoginStatus();
@@ -90,17 +96,19 @@ function updateLoginStatus() {
     }
 }
 
+// Modify the showLoggedInContent() function
 function showLoggedInContent() {
     const loginSection = document.getElementById('loginSection');
     loginSection.style.display = 'none';
 
     const rewardSection = document.getElementById('rewardSection');
-    rewardSection.style.display = 'block';
+    rewardSection.style.display = isLoggedIn ? 'block' : 'none';
 }
 
+// Modify the showLoggedOutContent() function
 function showLoggedOutContent() {
     const loginSection = document.getElementById('loginSection');
-    loginSection.style.display = 'block';
+    loginSection.style.display = isLoggedIn ? 'none' : 'block';
 
     const rewardSection = document.getElementById('rewardSection');
     rewardSection.style.display = 'none';

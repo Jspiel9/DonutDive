@@ -56,4 +56,5 @@ def check_authentication(request):
     if request.user.is_authenticated:
         return JsonResponse({'message': 'User is authenticated', 'username': request.user.username})
     else:
-        return JsonResponse({'message': 'User is not authenticated'}, status=401)
+        return JsonResponse({'message': 'User is not authenticated'})
+
