@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const serverUrl = 'http://74.126.76.47:3000';
+const cors = require('cors'); // Import the CORS middleware
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -13,6 +13,11 @@ app.use(session({
   secret: 'your-secret-key',
   resave: false,
   saveUninitialized: true,
+}));
+
+// Enable CORS for all routes
+app.use(cors({
+  origin: 'http://localhost:3000'
 }));
 
 // In-memory database (for demonstration purposes)
