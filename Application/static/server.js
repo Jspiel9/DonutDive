@@ -38,16 +38,28 @@ const isAuthenticated = (req, res, next) => {
 // Login endpoint
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
+  
+  console.log('Received login request:', username, password); // Add this line to log the received data
+
   const user = users.find(u => u.username === username && u.password === password);
 
   if (user) {
     req.session.userId = user.id;
     req.session.username = user.username; // Set the username in the session
     res.json({ message: 'Login successful' });
+    console.log('Login successful'); // Add this line to log successful login
   } else {
     res.status(401).json({ message: 'Invalid username or password' });
+    console.error('Login failed: Invalid username or password'); // Add this line to log failed login attempt
   }
 });
+
+// Login endpoint with trailing slash
+app.post('/login/', (req, res) => {
+  // Delegate to the main login handler
+  return app.post('/login', req, res);
+});
+
 
 
 // Logout endpoint

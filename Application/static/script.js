@@ -7,7 +7,8 @@ async function login() {
     const passwordInput = $('#password').val();
 
     try {
-        const response = await fetch('http://localhost:8000/login', {
+        console.log('Sending login request with username:', usernameInput);
+        const response = await fetch('http://localhost:8000/login/', { // Remove the trailing slash
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -16,14 +17,20 @@ async function login() {
             credentials: 'include', // Include credentials for cookies to be sent with the request
         });
 
+        console.log('Received response:', response); // Log the entire response object
+
         const data = await response.json();
 
-        if (response.ok) {
+        console.log('Parsed response data:', data); // Log the parsed JSON data
+
+        if (response.status === 200) { // Check for a successful login response
+            console.log('Login successful');
             currentUser = { username: usernameInput };
             isLoggedIn = true;
             updateLoginStatus();
             showLoggedInContent();
         } else {
+            console.error('Login failed:', data.message || 'Unknown error');
             alert(data.message || 'Login failed');
         }
     } catch (error) {
@@ -31,9 +38,10 @@ async function login() {
     }
 }
 
+
 async function logout() {
     try {
-        const response = await fetch('http://localhost:8000/logout', {
+        const response = await fetch('http://localhost:8000/logout/', {
             method: 'POST',
             credentials: 'include',
         });
@@ -109,7 +117,7 @@ function showLoggedOutContent() {
 async function claimReward() {
     if (isLoggedIn && !hasClaimedReward) {
         try {
-            const response = await fetch('http://localhost:8000/claimReward', {
+            const response = await fetch('http://localhost:8000/claimReward/', {
                 method: 'POST',
                 credentials: 'include',
             });

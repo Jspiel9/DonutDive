@@ -8,6 +8,6 @@ urlpatterns = [
     path("Calendar/", views.Calendar, name="Calendar"),
     path("Contacts/", views.Contacts, name="Contacts"),
     path("Login/", views.Login, name="Login"),
-    path("login/", views.login_view, name="login"),  # Update to point to login_view function
+    path("login/", views.login, name="login"),  # Update to point to login_view function
     path("checkAuth/", views.check_authentication, name="check_auth"),
 ]
