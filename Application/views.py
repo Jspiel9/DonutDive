@@ -54,7 +54,7 @@ def Signup(request):
             # Check if the username already exists
             if User.objects.filter(username=username).exists():
                 messages.error(request, "Username already exists. Please choose a different username.")
-                return redirect('Signup')
+                return redirect('Home')
 
             # Create the user if the username is unique
             myuser = User.objects.create_user(username, email, pass1)
