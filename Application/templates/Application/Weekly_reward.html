@@ -1,4 +1,3 @@
-<!-- Contacts.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,13 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/DonutDive.css">
-    <title>Donut Dive</title>
+    <link rel="stylesheet" href="{% static 'DonutDive.css' %}">
+    <title>Weekly Reward - Donut Dive</title>
 </head>
 
 <body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+    </button>
+    </div>
+    {% endfor %}
+
     <header>
-        <h1>Welcome to the Donut Dive</h1>
+        <h1>Welcome to Donut Dive</h1>
         <p>Your go-to place for delicious donuts!</p>
     </header>
 
@@ -28,7 +36,7 @@
             <li id="loginStatus"></li>
         </ul>
     </nav>
-{% else %}
+    {% else %}
     <nav>
         <ul>
             <li><a href="{% url 'Home' %}">Home</a></li>
@@ -39,13 +47,17 @@
             <li id="loginStatus"></li>
         </ul>
     </nav>
-    
-{% endif %}
+    {% endif %}
 
-<section id="contact">
-        <h2>Contact Us</h2>
-        <a href="https://www.facebook.com/people/Donut-Dive/100066606096447/">Facebook</a>
-        <a href="https://www.instagram.com/donut_dive/">Instagram</a>
-        <p>DonutDive@gmail.com</p>
+    <section id="rewardSection">
+        <h2>Weekly Reward</h2>
+        <p>{{ reward_message }}</p>
+        <form action="{% url 'Weekly_reward' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Claim Weekly Reward</button>
+        </form>
     </section>
-    
+
+</body>
+
+</html>
